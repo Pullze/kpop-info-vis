@@ -1,10 +1,11 @@
-function App() {
+import Article from "@/components/article.tsx";
+import {getHTMLStringFromMarkDown} from "@/lib/article.ts";
 
+const content  = await getHTMLStringFromMarkDown('kpop');
+
+function App() {
   return (
-    <>
-      <div className={"bg-neutral-800 h-full w-full"}>
-      </div>
-    </>
+    <Article content={content} />
   )
 }
 
