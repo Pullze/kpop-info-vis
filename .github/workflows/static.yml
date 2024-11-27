@@ -31,14 +31,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Show directory path and content
-        run: pwd & ls
-      - name: Go to working dir
-        run: cd app
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Show directory path and content
+        run: pwd & ls
+      - name: Go to working dir
+        run: cd ./app & pwd & ls
       - name: Install dependencies
         run: npm install
       - name: Build
