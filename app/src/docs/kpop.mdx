@@ -5,6 +5,7 @@ import Chart from "@/components/chart.tsx";
 
 import GenRank from "@/charts/gen_rank.json";
 import GirlsGen from "@/charts/girls_gen.json";
+import BTS from "@/charts/bts.json";
 
 <Header/>
 
@@ -64,32 +65,40 @@ import GirlsGen from "@/charts/girls_gen.json";
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
-  <Chart spec={GirlsGen} />
+  <Chart spec={GirlsGen}/>
+
+  > On YouTube, Girls' Generation's most-viewed music videos were released between 2009 and 2015.
+  > Among them, Gee, released in 2009, holds the title as their all-time most-viewed music video with most awards,
+  surpassing 300 million views.
+  > Between 2009 and 2011, the group released seven hit songs that became their top-viewed music videos in history.
+  > The remaining five songs are Genie, Oh!, Run Devil Run, Mr. Taxi, The Boys and Hoot.
+
   ## The 3rd Generation
   The third generation of K-Pop coincides with the expansion of the genre globally. BTS, EXO, Blackpink, and Twice rose
   to prominence, captivating audiences with their unique concepts, addictive melodies, and stunning visuals. The third
   generation also witnessed the rise of solo artists like Jimin and Taeyeon, who showcased their versatility and
   artistry, further propelling K-Pop’s global domination
 
-  ```
-  [Insert Graph_BTS]
-  In SI649_final_project_02
-  ```
-
   K-POP is dubbed as a “Global Phenomenon”. The popularity of social networks and streaming platforms also contributed
   immensely to this expansion. Groups have started to perform in International Music Festivals and International Award
   Shows.
-
 
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/7C2z4GqqS5E?si=P2fPsxFwqLeWylt2"
           title="YouTube video player" frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
+  <Chart spec={BTS}/>
+
+  > In 2009, only one K-pop album - BOA - made it onto the Billboard 200 chart. The album peaked at position 127 and
+  > remained on the chart for just one week.
+  >
+  > A decade later, nine albums made it onto the Billboard 200, including three releases from BTS. Two of these albums -
+  > Love Yourself: Tear and Love Yourself: Answer reached the number one spot and stayed on the chart for over 15 weeks.
+
   The third generation also witnessed the rise of solo artists like Jimin and Taeyeon, who showcased their versatility
   and artistry, further propelling K-Pop’s global domination.
 
-  <Chart spec={GenRank} />
 
   ## The 4th Generation
   The ‘most viral generation’ of today is sweeping the maximum benefits from the efforts of artists from previous
@@ -102,10 +111,12 @@ import GirlsGen from "@/charts/girls_gen.json";
   surpassing 1 million in pre-order sales. Companies began investing millions of dollars to deliver top-class music,
   with escalated focus on choreography, music video production, and fashion
 
-  ```
-  [Insert Graph_3]
-  In SI649_final_project_01
-  ```
+  <Chart spec={GenRank}/>
+
+  > Among the Top 20 K-pop groups and singers with the most Billboard 200 hits, nine are from the 3rd generation, with
+  > Twice and Blackpink being the only girl groups. Another nine belong to the 4th generation, evenly divided between
+  > three boy bands and three girl groups. The 5th-generation group BoyNextDoor and the 2nd-generation artist G-Dragon
+  > each have one entry on the list.
 
   ## The 5th Generation
 

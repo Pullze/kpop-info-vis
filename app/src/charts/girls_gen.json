@@ -1,21 +1,33 @@
 {
   "config": {
-    "view": {"continuousWidth": 300, "continuousHeight": 300, "strokeWidth": 0}
+    "view": {
+      "continuousWidth": 300,
+      "continuousHeight": 300,
+      "strokeWidth": 0
+    }
   },
   "data": {
     "url": "https://raw.githubusercontent.com/Pullze/kpop-info-vis/refs/heads/master/data/girl_gen.csv"
   },
-  "mark": {"type": "bar"},
+  "mark": {
+    "type": "bar"
+  },
   "encoding": {
     "color": {
-      "aggregate": "max",
+      "aggregate": "min",
       "field": "year",
-      "scale": {"scheme": "tableau20"},
+      "scale": {
+        "scheme": "tableau20"
+      },
       "title": "Year",
       "type": "ordinal"
     },
     "tooltip": [
-      {"field": "name", "title": "Album", "type": "nominal"},
+      {
+        "field": "name",
+        "title": "Album",
+        "type": "nominal"
+      },
       {
         "aggregate": "sum",
         "field": "views",
@@ -42,13 +54,23 @@
       "title": "Views(Million)",
       "type": "quantitative"
     },
-    "y": {"field": "name", "sort": "-x", "title": "MV", "type": "ordinal"}
+    "y": {
+      "field": "name",
+      "sort": "-x",
+      "title": "MV",
+      "type": "ordinal"
+    }
   },
   "height": 500,
   "params": [
     {
-      "name": "param_10",
-      "select": {"type": "point", "fields": ["year"]},
+      "name": "param_6",
+      "select": {
+        "type": "point",
+        "fields": [
+          "year"
+        ]
+      },
       "bind": {
         "input": "range",
         "max": 2023,
@@ -64,14 +86,35 @@
     "fontSize": 20
   },
   "transform": [
-    {"calculate": "(datum.views) / 1000000", "as": "views"},
-    {"calculate": "upper(datum.name)", "as": "name"},
-    {"filter": "(datum.year <= param_10.year)"},
     {
-      "window": [{"op": "rank", "field": "sum(views)", "as": "rank"}],
-      "sort": [{"field": "views", "order": "descending"}]
+      "calculate": "(datum.views) / 1000000",
+      "as": "views"
     },
-    {"filter": "(datum.rank <= 20)"}
+    {
+      "calculate": "upper(datum.name)",
+      "as": "name"
+    },
+    {
+      "filter": "(datum.year <= param_6.year)"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "field": "sum(views)",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "views",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "filter": "(datum.rank <= 20)"
+    }
   ],
   "width": 500,
   "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json"
