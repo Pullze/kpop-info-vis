@@ -3,6 +3,9 @@ import Title from "@/components/title.tsx";
 import Article from "@/components/article.tsx";
 import Chart from "@/components/chart.tsx";
 
+import GenRank from "@/charts/gen_rank.json";
+import GirlsGen from "@/charts/girls_gen.json";
+
 <Header/>
 
 <Article>
@@ -61,84 +64,7 @@ import Chart from "@/components/chart.tsx";
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
-  <Chart spec={`{
-    "config": {
-      "view": {"continuousWidth": 300, "continuousHeight": 300, "strokeWidth": 0}
-    },
-    "data": {
-      "url": "https://raw.githubusercontent.com/Pullze/kpop-info-vis/refs/heads/master/data/girl_gen.csv"
-    },
-    "mark": {"type": "bar"},
-    "encoding": {
-      "color": {
-        "aggregate": "max",
-        "field": "year",
-        "scale": {"scheme": "tableau20"},
-        "title": "Year",
-        "type": "ordinal"
-      },
-      "tooltip": [
-        {"field": "name", "title": "Album", "type": "nominal"},
-        {
-          "aggregate": "sum",
-          "field": "views",
-          "format": ".2f",
-          "title": "Views(Million)",
-          "type": "quantitative"
-        },
-        {
-          "aggregate": "sum",
-          "field": "awards",
-          "title": "Awards",
-          "type": "quantitative"
-        },
-        {
-          "aggregate": "max",
-          "field": "year",
-          "title": "Release Year",
-          "type": "ordinal"
-        }
-      ],
-      "x": {
-        "aggregate": "sum",
-        "field": "views",
-        "title": "Views(Million)",
-        "type": "quantitative"
-      },
-      "y": {"field": "name", "sort": "-x", "title": "MV", "type": "ordinal"}
-    },
-    "height": 500,
-    "params": [
-      {
-        "name": "param_10",
-        "select": {"type": "point", "fields": ["year"]},
-        "bind": {
-          "input": "range",
-          "max": 2023,
-          "min": 2007,
-          "name": "By ",
-          "step": 1
-        },
-        "value": 2023
-      }
-    ],
-    "title": {
-      "text": "Top Girls' Generation MVs with Most Views and Awards By Time",
-      "fontSize": 18
-    },
-    "transform": [
-      {"calculate": "(datum.views) / 1000000", "as": "views"},
-      {"calculate": "upper(datum.name)", "as": "name"},
-      {"filter": "(datum.year <= param_10.year)"},
-      {
-        "window": [{"op": "rank", "field": "sum(views)", "as": "rank"}],
-        "sort": [{"field": "views", "order": "descending"}]
-      },
-      {"filter": "(datum.rank <= 20)"}
-    ],
-    "width": 500,
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json"
-  }`} />
+  <Chart spec={GirlsGen} />
   ## The 3rd Generation
   The third generation of K-Pop coincides with the expansion of the genre globally. BTS, EXO, Blackpink, and Twice rose
   to prominence, captivating audiences with their unique concepts, addictive melodies, and stunning visuals. The third
@@ -163,10 +89,7 @@ import Chart from "@/components/chart.tsx";
   The third generation also witnessed the rise of solo artists like Jimin and Taeyeon, who showcased their versatility
   and artistry, further propelling K-Pop’s global domination.
 
-  ```
-  [Insert [Insert Graph_2]
-  In SI649_final_project_01
-  ```
+  <Chart spec={GenRank} />
 
   ## The 4th Generation
   The ‘most viral generation’ of today is sweeping the maximum benefits from the efforts of artists from previous

@@ -1,0 +1,361 @@
+{
+  "config": {
+    "view": {
+      "continuousWidth": 300,
+      "continuousHeight": 300,
+      "strokeWidth": 0
+    }
+  },
+  "data": {
+    "name": "data-335b50e1c33e775ea7b403504565c9b0"
+  },
+  "mark": {
+    "type": "bar"
+  },
+  "encoding": {
+    "color": {
+      "field": "generation",
+      "scale": {
+        "domain": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "scheme": "tableau20"
+      },
+      "title": "Generation",
+      "type": "nominal"
+    },
+    "tooltip": [
+      {
+        "field": "num",
+        "title": "Frequency",
+        "type": "quantitative"
+      },
+      {
+        "field": "generation",
+        "title": "Generation",
+        "type": "nominal"
+      }
+    ],
+    "x": {
+      "axis": {
+        "labelAngle": -45
+      },
+      "field": "Artist",
+      "sort": "-y",
+      "title": null,
+      "type": "nominal"
+    },
+    "y": {
+      "field": "num",
+      "title": "Frequency of Hitting Billboard 200",
+      "type": "quantitative"
+    }
+  },
+  "height": 400,
+  "params": [
+    {
+      "name": "param_88",
+      "select": {
+        "type": "point",
+        "fields": [
+          "generation"
+        ]
+      },
+      "bind": {
+        "input": "select",
+        "options": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          null
+        ],
+        "labels": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "All"
+        ],
+        "name": "Generation "
+      },
+      "value": null
+    }
+  ],
+  "title": {
+    "text": "Top 20 K-pop Groups with the Most Billboard 200 Hits (2009-2023)",
+    "fontSize": 20
+  },
+  "transform": [
+    {
+      "filter": {
+        "param": "param_88"
+      }
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "field": "",
+          "as": "rank"
+        }
+      ],
+      "sort": []
+    },
+    {
+      "filter": "(datum.rank <= 20)"
+    }
+  ],
+  "width": 800,
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json",
+  "datasets": {
+    "data-335b50e1c33e775ea7b403504565c9b0": [
+      {
+        "Artist": "BTS",
+        "num": 16,
+        "generation": 3
+      },
+      {
+        "Artist": "TXT",
+        "num": 11,
+        "generation": 4
+      },
+      {
+        "Artist": "NCT 127",
+        "num": 8,
+        "generation": 3
+      },
+      {
+        "Artist": "Seventeen",
+        "num": 8,
+        "generation": 3
+      },
+      {
+        "Artist": "Enhypen",
+        "num": 7,
+        "generation": 4
+      },
+      {
+        "Artist": "Twice",
+        "num": 7,
+        "generation": 3
+      },
+      {
+        "Artist": "Ateez",
+        "num": 7,
+        "generation": 4
+      },
+      {
+        "Artist": "Itzy",
+        "num": 7,
+        "generation": 4
+      },
+      {
+        "Artist": "Aespa",
+        "num": 6,
+        "generation": 4
+      },
+      {
+        "Artist": "Stray Kids",
+        "num": 5,
+        "generation": 4
+      },
+      {
+        "Artist": "Le Sserafim",
+        "num": 4,
+        "generation": 4
+      },
+      {
+        "Artist": "Exo",
+        "num": 4,
+        "generation": 3
+      },
+      {
+        "Artist": "(G)I-dle",
+        "num": 4,
+        "generation": 4
+      },
+      {
+        "Artist": "Blackpink",
+        "num": 4,
+        "generation": 3
+      },
+      {
+        "Artist": "BoyNextDoor",
+        "num": 3,
+        "generation": 5
+      },
+      {
+        "Artist": "RM",
+        "num": 3,
+        "generation": 3
+      },
+      {
+        "Artist": "G-Dragon",
+        "num": 3,
+        "generation": 2
+      },
+      {
+        "Artist": "P1Harmony",
+        "num": 3,
+        "generation": 4
+      },
+      {
+        "Artist": "J-Hope",
+        "num": 3,
+        "generation": 3
+      },
+      {
+        "Artist": "NCT",
+        "num": 3,
+        "generation": 3
+      },
+      {
+        "Artist": "Nmixx",
+        "num": 2,
+        "generation": 4
+      },
+      {
+        "Artist": "Nayeon",
+        "num": 2,
+        "generation": 3
+      },
+      {
+        "Artist": "NCT Dream",
+        "num": 2,
+        "generation": 3
+      },
+      {
+        "Artist": "SuperM",
+        "num": 2,
+        "generation": 3
+      },
+      {
+        "Artist": "Monsta X",
+        "num": 2,
+        "generation": 3
+      },
+      {
+        "Artist": "Xikers",
+        "num": 2,
+        "generation": 5
+      },
+      {
+        "Artist": "Agust D",
+        "num": 2,
+        "generation": 3
+      },
+      {
+        "Artist": "Jimin",
+        "num": 2,
+        "generation": 3
+      },
+      {
+        "Artist": "Illit",
+        "num": 2,
+        "generation": 5
+      },
+      {
+        "Artist": "Big Bang",
+        "num": 2,
+        "generation": 2
+      },
+      {
+        "Artist": "Kep1er",
+        "num": 1,
+        "generation": 4
+      },
+      {
+        "Artist": "Red Velvet",
+        "num": 1,
+        "generation": 3
+      },
+      {
+        "Artist": "V",
+        "num": 1,
+        "generation": 3
+      },
+      {
+        "Artist": "The Rose",
+        "num": 1,
+        "generation": 3
+      },
+      {
+        "Artist": "Taeyang",
+        "num": 1,
+        "generation": 2
+      },
+      {
+        "Artist": "Babymonster",
+        "num": 1,
+        "generation": 5
+      },
+      {
+        "Artist": "BoA",
+        "num": 1,
+        "generation": 1
+      },
+      {
+        "Artist": "DPR Ian",
+        "num": 1,
+        "generation": 3
+      },
+      {
+        "Artist": "Exo-K",
+        "num": 1,
+        "generation": 3
+      },
+      {
+        "Artist": "Jungkook",
+        "num": 1,
+        "generation": 3
+      },
+      {
+        "Artist": "Girls' Generation",
+        "num": 1,
+        "generation": 2
+      },
+      {
+        "Artist": "Girls' Generation-TTS",
+        "num": 1,
+        "generation": 2
+      },
+      {
+        "Artist": "NewJeans",
+        "num": 1,
+        "generation": 4
+      },
+      {
+        "Artist": "Jackson Wang",
+        "num": 1,
+        "generation": 2
+      },
+      {
+        "Artist": "Jihyo",
+        "num": 1,
+        "generation": 3
+      },
+      {
+        "Artist": "2NE1",
+        "num": 1,
+        "generation": 2
+      },
+      {
+        "Artist": "Loona",
+        "num": 1,
+        "generation": 3
+      },
+      {
+        "Artist": "Jonghyun",
+        "num": 1,
+        "generation": 2
+      }
+    ]
+  }
+}
