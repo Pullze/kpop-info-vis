@@ -1,0 +1,1592 @@
+{
+  "config": {
+    "view": {
+      "continuousWidth": 300,
+      "continuousHeight": 300,
+      "strokeWidth": 0
+    },
+    "axis": {
+      "labelFontSize": 14,
+      "titleFontSize": 16
+    },
+    "legend": {
+      "labelFontSize": 14,
+      "titleFontSize": 16
+    },
+    "title": {
+      "anchor": "start",
+      "fontSize": 20
+    }
+  },
+  "vconcat": [
+    {
+      "layer": [
+        {
+          "mark": {
+            "type": "line",
+            "size": 2.5
+          },
+          "encoding": {
+            "color": {
+              "field": "generation",
+              "type": "nominal"
+            },
+            "x": {
+              "axis": {
+                "format": "%Y",
+                "labelAngle": -45,
+                "labelOverlap": "greedy"
+              },
+              "field": "year",
+              "title": null,
+              "type": "temporal"
+            },
+            "y": {
+              "field": "total_songs",
+              "scale": {
+                "nice": true
+              },
+              "title": "The Number of Songs/Albums",
+              "type": "quantitative"
+            }
+          },
+          "transform": [
+            {
+              "aggregate": [
+                {
+                  "op": "count",
+                  "as": "total_songs"
+                }
+              ],
+              "groupby": [
+                "year",
+                "generation"
+              ]
+            },
+            {
+              "filter": "(datum.total_songs > 0)"
+            }
+          ]
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "lightgray",
+            "size": 2
+          },
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "param": "param_163",
+                "value": 1,
+                "empty": false
+              },
+              "value": 0
+            },
+            "x": {
+              "field": "year",
+              "type": "temporal"
+            }
+          },
+          "name": "view_44"
+        },
+        {
+          "mark": {
+            "type": "circle",
+            "size": 90
+          },
+          "encoding": {
+            "color": {
+              "field": "generation",
+              "type": "nominal"
+            },
+            "opacity": {
+              "condition": {
+                "param": "param_163",
+                "value": 1,
+                "empty": false
+              },
+              "value": 0
+            },
+            "x": {
+              "field": "year",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "total_songs",
+              "type": "quantitative"
+            }
+          },
+          "transform": [
+            {
+              "aggregate": [
+                {
+                  "op": "count",
+                  "as": "total_songs"
+                }
+              ],
+              "groupby": [
+                "year",
+                "generation"
+              ]
+            },
+            {
+              "filter": {
+                "param": "param_163",
+                "empty": false
+              }
+            }
+          ]
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 7,
+            "fontSize": 14
+          },
+          "encoding": {
+            "color": {
+              "field": "generation",
+              "type": "nominal"
+            },
+            "opacity": {
+              "condition": {
+                "param": "param_163",
+                "value": 1,
+                "empty": false
+              },
+              "value": 0
+            },
+            "text": {
+              "field": "total_songs",
+              "format": ".0f",
+              "type": "quantitative"
+            },
+            "x": {
+              "field": "year",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "total_songs",
+              "type": "quantitative"
+            }
+          },
+          "transform": [
+            {
+              "aggregate": [
+                {
+                  "op": "count",
+                  "as": "total_songs"
+                }
+              ],
+              "groupby": [
+                "year",
+                "generation"
+              ]
+            },
+            {
+              "filter": {
+                "param": "param_163",
+                "empty": false
+              }
+            }
+          ]
+        }
+      ],
+      "height": 400,
+      "title": {
+        "text": "The Number of K-pop Albums that Hit Billboard 200 by Year",
+        "subtitle": "Grouped by Generation",
+        "fontSize": 20,
+        "font": "Arial",
+        "anchor": "start"
+      },
+      "width": 600
+    },
+    {
+      "layer": [
+        {
+          "mark": {
+            "type": "bar"
+          },
+          "encoding": {
+            "color": {
+              "field": "generation",
+              "legend": null,
+              "scale": {
+                "scheme": "tableau10"
+              },
+              "type": "nominal"
+            },
+            "tooltip": [
+              {
+                "field": "generation",
+                "type": "nominal"
+              },
+              {
+                "aggregate": "mean",
+                "field": "Weeks on Chart",
+                "type": "quantitative"
+              }
+            ],
+            "x": {
+              "aggregate": "mean",
+              "axis": {
+                "format": ".0f",
+                "tickCount": 5
+              },
+              "field": "Weeks on Chart",
+              "scale": {
+                "domain": [
+                  0,
+                  14
+                ]
+              },
+              "title": "Average Weeks on Chart",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "generation",
+              "sort": "x",
+              "title": "Generation",
+              "type": "nominal"
+            }
+          },
+          "title": "Average Weeks on Chart by Generation",
+          "transform": [
+            {
+              "window": [
+                {
+                  "op": "rank",
+                  "field": "mean(Weeks on Chart)",
+                  "as": "rank"
+                }
+              ],
+              "sort": [
+                {
+                  "field": "mean(Weeks on Chart)",
+                  "order": "descending"
+                }
+              ]
+            },
+            {
+              "filter": {
+                "param": "param_163",
+                "empty": false
+              }
+            }
+          ]
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 8,
+            "fontSize": 12
+          },
+          "encoding": {
+            "text": {
+              "aggregate": "mean",
+              "field": "Weeks on Chart",
+              "format": ".2f",
+              "type": "quantitative"
+            },
+            "x": {
+              "aggregate": "mean",
+              "field": "Weeks on Chart",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "generation",
+              "sort": "x",
+              "title": "Generation",
+              "type": "nominal"
+            }
+          },
+          "transform": [
+            {
+              "window": [
+                {
+                  "op": "rank",
+                  "field": "mean(Weeks on Chart)",
+                  "as": "rank"
+                }
+              ],
+              "sort": [
+                {
+                  "field": "mean(Weeks on Chart)",
+                  "order": "descending"
+                }
+              ]
+            },
+            {
+              "filter": {
+                "param": "param_163",
+                "empty": false
+              }
+            }
+          ]
+        }
+      ],
+      "height": 100,
+      "width": 600
+    }
+  ],
+  "data": {
+    "name": "data-2ce2959a76979b034522657ffc977769"
+  },
+  "params": [
+    {
+      "name": "param_163",
+      "select": {
+        "type": "point",
+        "fields": [
+          "year"
+        ],
+        "nearest": true,
+        "on": "mousemove"
+      },
+      "views": [
+        "view_44"
+      ]
+    }
+  ],
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json",
+  "datasets": {
+    "data-2ce2959a76979b034522657ffc977769": [
+      {
+        "Song/Album Title": "BoA",
+        "Artist": "BoA",
+        "Peak Position": 127,
+        "Weeks on Chart": 1,
+        "year": "2009-01-01T00:00:00",
+        "generation": 1
+      },
+      {
+        "Song/Album Title": "Alive",
+        "Artist": "Big Bang",
+        "Peak Position": 150,
+        "Weeks on Chart": 1,
+        "year": "2012-01-01T00:00:00",
+        "generation": 2
+      },
+      {
+        "Song/Album Title": "Twinkle",
+        "Artist": "Girls' Generation-TTS",
+        "Peak Position": 126,
+        "Weeks on Chart": 1,
+        "year": "2012-01-01T00:00:00",
+        "generation": 2
+      },
+      {
+        "Song/Album Title": "One of a Kind",
+        "Artist": "G-Dragon",
+        "Peak Position": 161,
+        "Weeks on Chart": 1,
+        "year": "2012-01-01T00:00:00",
+        "generation": 2
+      },
+      {
+        "Song/Album Title": "Coup d'Etat Pt.1",
+        "Artist": "G-Dragon",
+        "Peak Position": 182,
+        "Weeks on Chart": 1,
+        "year": "2013-01-01T00:00:00",
+        "generation": 2
+      },
+      {
+        "Song/Album Title": "Crush",
+        "Artist": "2NE1",
+        "Peak Position": 61,
+        "Weeks on Chart": 1,
+        "year": "2014-01-01T00:00:00",
+        "generation": 2
+      },
+      {
+        "Song/Album Title": "Mr.Mr.",
+        "Artist": "Girls' Generation",
+        "Peak Position": 110,
+        "Weeks on Chart": 1,
+        "year": "2014-01-01T00:00:00",
+        "generation": 2
+      },
+      {
+        "Song/Album Title": "Overdose",
+        "Artist": "Exo-K",
+        "Peak Position": 129,
+        "Weeks on Chart": 1,
+        "year": "2014-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Rise",
+        "Artist": "Taeyang",
+        "Peak Position": 112,
+        "Weeks on Chart": 1,
+        "year": "2014-01-01T00:00:00",
+        "generation": 2
+      },
+      {
+        "Song/Album Title": "Exodus",
+        "Artist": "Exo",
+        "Peak Position": 95,
+        "Weeks on Chart": 1,
+        "year": "2015-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "The Most Beautiful Moment In Life, Part 2",
+        "Artist": "BTS",
+        "Peak Position": 171,
+        "Weeks on Chart": 1,
+        "year": "2015-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "The Most Beautiful Moment In Life: Young Forever",
+        "Artist": "BTS",
+        "Peak Position": 107,
+        "Weeks on Chart": 1,
+        "year": "2016-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Wings",
+        "Artist": "BTS",
+        "Peak Position": 26,
+        "Weeks on Chart": 2,
+        "year": "2016-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Made",
+        "Artist": "Big Bang",
+        "Peak Position": 172,
+        "Weeks on Chart": 1,
+        "year": "2016-01-01T00:00:00",
+        "generation": 2
+      },
+      {
+        "Song/Album Title": "You Never Walk Alone",
+        "Artist": "BTS",
+        "Peak Position": 61,
+        "Weeks on Chart": 2,
+        "year": "2017-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Kwon Ji Yong",
+        "Artist": "G-Dragon",
+        "Peak Position": 192,
+        "Weeks on Chart": 1,
+        "year": "2017-01-01T00:00:00",
+        "generation": 2
+      },
+      {
+        "Song/Album Title": "The War",
+        "Artist": "Exo",
+        "Peak Position": 87,
+        "Weeks on Chart": 1,
+        "year": "2017-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Love Yourself: Her",
+        "Artist": "BTS",
+        "Peak Position": 7,
+        "Weeks on Chart": 7,
+        "year": "2017-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Poet \uff5c Artist",
+        "Artist": "Jonghyun",
+        "Peak Position": 177,
+        "Weeks on Chart": 1,
+        "year": "2018-01-01T00:00:00",
+        "generation": 2
+      },
+      {
+        "Song/Album Title": "Hope World",
+        "Artist": "J-Hope",
+        "Peak Position": 38,
+        "Weeks on Chart": 2,
+        "year": "2018-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Face Yourself",
+        "Artist": "BTS",
+        "Peak Position": 43,
+        "Weeks on Chart": 1,
+        "year": "2018-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Love Yourself: Tear",
+        "Artist": "BTS",
+        "Peak Position": 1,
+        "Weeks on Chart": 15,
+        "year": "2018-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Square Up",
+        "Artist": "Blackpink",
+        "Peak Position": 40,
+        "Weeks on Chart": 1,
+        "year": "2018-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Love Yourself: Answer",
+        "Artist": "BTS",
+        "Peak Position": 1,
+        "Weeks on Chart": 31,
+        "year": "2018-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Regular-Irregular",
+        "Artist": "NCT 127",
+        "Peak Position": 86,
+        "Weeks on Chart": 1,
+        "year": "2018-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "mono.",
+        "Artist": "RM",
+        "Peak Position": 26,
+        "Weeks on Chart": 1,
+        "year": "2018-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Don't Mess Up My Tempo",
+        "Artist": "Exo",
+        "Peak Position": 23,
+        "Weeks on Chart": 2,
+        "year": "2018-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "The Dream Chapter: Star",
+        "Artist": "TXT",
+        "Peak Position": 140,
+        "Weeks on Chart": 1,
+        "year": "2019-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Kill This Love",
+        "Artist": "Blackpink",
+        "Peak Position": 24,
+        "Weeks on Chart": 4,
+        "year": "2019-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Map of the Soul: Persona",
+        "Artist": "BTS",
+        "Peak Position": 1,
+        "Weeks on Chart": 22,
+        "year": "2019-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "We Are Superhuman",
+        "Artist": "NCT 127",
+        "Peak Position": 11,
+        "Weeks on Chart": 1,
+        "year": "2019-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "BTS World: Original Soundtrack",
+        "Artist": "BTS",
+        "Peak Position": 26,
+        "Weeks on Chart": 1,
+        "year": "2019-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "SuperM",
+        "Artist": "SuperM",
+        "Peak Position": 1,
+        "Weeks on Chart": 9,
+        "year": "2019-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Obsession",
+        "Artist": "Exo",
+        "Peak Position": 182,
+        "Weeks on Chart": 2,
+        "year": "2019-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "All About Luv",
+        "Artist": "Monsta X",
+        "Peak Position": 5,
+        "Weeks on Chart": 2,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Map of the Soul: 7",
+        "Artist": "BTS",
+        "Peak Position": 1,
+        "Weeks on Chart": 82,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Neo Zone",
+        "Artist": "NCT 127",
+        "Peak Position": 5,
+        "Weeks on Chart": 4,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "D-2",
+        "Artist": "Agust D",
+        "Peak Position": 11,
+        "Weeks on Chart": 1,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "More & More",
+        "Artist": "Twice",
+        "Peak Position": 200,
+        "Weeks on Chart": 1,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Map of the Soul: 7 - The Journey",
+        "Artist": "BTS",
+        "Peak Position": 14,
+        "Weeks on Chart": 1,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Super One",
+        "Artist": "SuperM",
+        "Peak Position": 2,
+        "Weeks on Chart": 4,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "The Album",
+        "Artist": "Blackpink",
+        "Peak Position": 2,
+        "Weeks on Chart": 26,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "NCT 2020 Resonance Pt. 1",
+        "Artist": "NCT",
+        "Peak Position": 6,
+        "Weeks on Chart": 9,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Skool Luv Affair",
+        "Artist": "BTS",
+        "Peak Position": 12,
+        "Weeks on Chart": 2,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "[12:00]",
+        "Artist": "Loona",
+        "Peak Position": 112,
+        "Weeks on Chart": 1,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Minisode1: Blue Hour",
+        "Artist": "TXT",
+        "Peak Position": 25,
+        "Weeks on Chart": 2,
+        "year": "2020-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Be",
+        "Artist": "BTS",
+        "Peak Position": 1,
+        "Weeks on Chart": 37,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Eyes Wide Open",
+        "Artist": "Twice",
+        "Peak Position": 72,
+        "Weeks on Chart": 1,
+        "year": "2020-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Still Dreaming",
+        "Artist": "TXT",
+        "Peak Position": 173,
+        "Weeks on Chart": 1,
+        "year": "2021-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Guess Who",
+        "Artist": "Itzy",
+        "Peak Position": 148,
+        "Weeks on Chart": 1,
+        "year": "2021-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Border: Carnival",
+        "Artist": "Enhypen",
+        "Peak Position": 18,
+        "Weeks on Chart": 2,
+        "year": "2021-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "The Chaos Chapter: Freeze",
+        "Artist": "TXT",
+        "Peak Position": 5,
+        "Weeks on Chart": 9,
+        "year": "2021-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Taste of Love",
+        "Artist": "Twice",
+        "Peak Position": 6,
+        "Weeks on Chart": 3,
+        "year": "2021-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Your Choice",
+        "Artist": "Seventeen",
+        "Peak Position": 15,
+        "Weeks on Chart": 1,
+        "year": "2021-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "BTS, the Best",
+        "Artist": "BTS",
+        "Peak Position": 19,
+        "Weeks on Chart": 2,
+        "year": "2021-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Zero: Fever Part.3",
+        "Artist": "Ateez",
+        "Peak Position": 42,
+        "Weeks on Chart": 1,
+        "year": "2021-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Sticker",
+        "Artist": "NCT 127",
+        "Peak Position": 3,
+        "Weeks on Chart": 17,
+        "year": "2021-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Crazy in Love",
+        "Artist": "Itzy",
+        "Peak Position": 11,
+        "Weeks on Chart": 2,
+        "year": "2021-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Savage",
+        "Artist": "Aespa",
+        "Peak Position": 20,
+        "Weeks on Chart": 1,
+        "year": "2021-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Dimension: Dilemma",
+        "Artist": "Enhypen",
+        "Peak Position": 11,
+        "Weeks on Chart": 2,
+        "year": "2021-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Attacca",
+        "Artist": "Seventeen",
+        "Peak Position": 13,
+        "Weeks on Chart": 2,
+        "year": "2021-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Formula of Love: O+T=<3",
+        "Artist": "Twice",
+        "Peak Position": 3,
+        "Weeks on Chart": 8,
+        "year": "2021-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Chaotic Wonderland",
+        "Artist": "TXT",
+        "Peak Position": 177,
+        "Weeks on Chart": 1,
+        "year": "2021-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "The Dreaming",
+        "Artist": "Monsta X",
+        "Peak Position": 21,
+        "Weeks on Chart": 2,
+        "year": "2021-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Zero: Fever Epilogue",
+        "Artist": "Ateez",
+        "Peak Position": 73,
+        "Weeks on Chart": 1,
+        "year": "2021-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Universe",
+        "Artist": "NCT",
+        "Peak Position": 20,
+        "Weeks on Chart": 4,
+        "year": "2022-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Dimension: Answer",
+        "Artist": "Enhypen",
+        "Peak Position": 14,
+        "Weeks on Chart": 3,
+        "year": "2022-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Oddinary",
+        "Artist": "Stray Kids",
+        "Peak Position": 1,
+        "Weeks on Chart": 7,
+        "year": "2022-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Glitch Mode",
+        "Artist": "NCT Dream",
+        "Peak Position": 50,
+        "Weeks on Chart": 1,
+        "year": "2022-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Minisode 2: Thursday's Child",
+        "Artist": "TXT",
+        "Peak Position": 4,
+        "Weeks on Chart": 14,
+        "year": "2022-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Face the Sun",
+        "Artist": "Seventeen",
+        "Peak Position": 7,
+        "Weeks on Chart": 7,
+        "year": "2022-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Proof",
+        "Artist": "BTS",
+        "Peak Position": 1,
+        "Weeks on Chart": 41,
+        "year": "2022-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Im Nayeon",
+        "Artist": "Nayeon",
+        "Peak Position": 7,
+        "Weeks on Chart": 5,
+        "year": "2022-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Girls",
+        "Artist": "Aespa",
+        "Peak Position": 3,
+        "Weeks on Chart": 3,
+        "year": "2022-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Checkmate",
+        "Artist": "Itzy",
+        "Peak Position": 8,
+        "Weeks on Chart": 3,
+        "year": "2022-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Jack in the Box",
+        "Artist": "J-Hope",
+        "Peak Position": 6,
+        "Weeks on Chart": 1,
+        "year": "2022-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Sector 17",
+        "Artist": "Seventeen",
+        "Peak Position": 4,
+        "Weeks on Chart": 4,
+        "year": "2022-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "The World EP.1: Movement",
+        "Artist": "Ateez",
+        "Peak Position": 3,
+        "Weeks on Chart": 1,
+        "year": "2022-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Manifesto: Day 1",
+        "Artist": "Enhypen",
+        "Peak Position": 6,
+        "Weeks on Chart": 7,
+        "year": "2022-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Between 1&2",
+        "Artist": "Twice",
+        "Peak Position": 3,
+        "Weeks on Chart": 8,
+        "year": "2022-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "\"Magic Man\"",
+        "Artist": "Jackson Wang",
+        "Peak Position": 15,
+        "Weeks on Chart": 1,
+        "year": "2022-01-01T00:00:00",
+        "generation": 2
+      },
+      {
+        "Song/Album Title": "Born Pink",
+        "Artist": "Blackpink",
+        "Peak Position": 1,
+        "Weeks on Chart": 11,
+        "year": "2022-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "2 Baddies",
+        "Artist": "NCT 127",
+        "Peak Position": 3,
+        "Weeks on Chart": 5,
+        "year": "2022-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Maxident",
+        "Artist": "Stray Kids",
+        "Peak Position": 1,
+        "Weeks on Chart": 6,
+        "year": "2022-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Antifragile",
+        "Artist": "Le Sserafim",
+        "Peak Position": 14,
+        "Weeks on Chart": 2,
+        "year": "2022-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "I Love",
+        "Artist": "(G)I-dle",
+        "Peak Position": 71,
+        "Weeks on Chart": 1,
+        "year": "2022-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Indigo",
+        "Artist": "RM",
+        "Peak Position": 3,
+        "Weeks on Chart": 1,
+        "year": "2022-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Cheshire",
+        "Artist": "Itzy",
+        "Peak Position": 25,
+        "Weeks on Chart": 2,
+        "year": "2022-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Spin Off: From the Witness",
+        "Artist": "Ateez",
+        "Peak Position": 7,
+        "Weeks on Chart": 2,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "The Name Chapter: Temptation",
+        "Artist": "TXT",
+        "Peak Position": 1,
+        "Weeks on Chart": 19,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Ay-Yo",
+        "Artist": "NCT 127",
+        "Peak Position": 13,
+        "Weeks on Chart": 2,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Ready to Be",
+        "Artist": "Twice",
+        "Peak Position": 2,
+        "Weeks on Chart": 9,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Face",
+        "Artist": "Jimin",
+        "Peak Position": 2,
+        "Weeks on Chart": 6,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Exp\u00e9rgo",
+        "Artist": "Nmixx",
+        "Peak Position": 122,
+        "Weeks on Chart": 1,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "House Of Tricky: Doorbell Ringing",
+        "Artist": "Xikers",
+        "Peak Position": 75,
+        "Weeks on Chart": 1,
+        "year": "2023-01-01T00:00:00",
+        "generation": 5
+      },
+      {
+        "Song/Album Title": "D-Day",
+        "Artist": "Agust D",
+        "Peak Position": 2,
+        "Weeks on Chart": 5,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "FML",
+        "Artist": "Seventeen",
+        "Peak Position": 2,
+        "Weeks on Chart": 9,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Unforgiven",
+        "Artist": "Le Sserafim",
+        "Peak Position": 6,
+        "Weeks on Chart": 8,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "I Feel",
+        "Artist": "(G)I-dle",
+        "Peak Position": 41,
+        "Weeks on Chart": 2,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "5-Star",
+        "Artist": "Stray Kids",
+        "Peak Position": 1,
+        "Weeks on Chart": 16,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Dark Blood",
+        "Artist": "Enhypen",
+        "Peak Position": 4,
+        "Weeks on Chart": 8,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Harmony: All In",
+        "Artist": "P1Harmony",
+        "Peak Position": 51,
+        "Weeks on Chart": 1,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "The World EP.2: Outlaw",
+        "Artist": "Ateez",
+        "Peak Position": 2,
+        "Weeks on Chart": 5,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "My World",
+        "Artist": "Aespa",
+        "Peak Position": 9,
+        "Weeks on Chart": 3,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Get Up",
+        "Artist": "NewJeans",
+        "Peak Position": 1,
+        "Weeks on Chart": 26,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Kill My Doubt",
+        "Artist": "Itzy",
+        "Peak Position": 23,
+        "Weeks on Chart": 2,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Sweet",
+        "Artist": "TXT",
+        "Peak Position": 54,
+        "Weeks on Chart": 1,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Zone",
+        "Artist": "Jihyo",
+        "Peak Position": 14,
+        "Weeks on Chart": 2,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "ISTJ",
+        "Artist": "NCT Dream",
+        "Peak Position": 28,
+        "Weeks on Chart": 3,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Layover",
+        "Artist": "V",
+        "Peak Position": 2,
+        "Weeks on Chart": 7,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Why..",
+        "Artist": "BoyNextDoor",
+        "Peak Position": 162,
+        "Weeks on Chart": 1,
+        "year": "2023-01-01T00:00:00",
+        "generation": 5
+      },
+      {
+        "Song/Album Title": "Dual",
+        "Artist": "The Rose",
+        "Peak Position": 83,
+        "Weeks on Chart": 1,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Golden Age",
+        "Artist": "NCT",
+        "Peak Position": 66,
+        "Weeks on Chart": 1,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Fact Check",
+        "Artist": "NCT 127",
+        "Peak Position": 16,
+        "Weeks on Chart": 2,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Heat",
+        "Artist": "(G)I-dle",
+        "Peak Position": 25,
+        "Weeks on Chart": 1,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Dear Insanity",
+        "Artist": "DPR Ian",
+        "Peak Position": 138,
+        "Weeks on Chart": 1,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "The Name Chapter: Freefall",
+        "Artist": "TXT",
+        "Peak Position": 3,
+        "Weeks on Chart": 7,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Seventeenth Heaven",
+        "Artist": "Seventeen",
+        "Peak Position": 2,
+        "Weeks on Chart": 5,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Golden",
+        "Artist": "Jungkook",
+        "Peak Position": 2,
+        "Weeks on Chart": 24,
+        "year": "2023-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Rock-Star",
+        "Artist": "Stray Kids",
+        "Peak Position": 1,
+        "Weeks on Chart": 14,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Drama",
+        "Artist": "Aespa",
+        "Peak Position": 33,
+        "Weeks on Chart": 2,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Orange Blood",
+        "Artist": "Enhypen",
+        "Peak Position": 4,
+        "Weeks on Chart": 7,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "The World EP.Fin: Will",
+        "Artist": "Ateez",
+        "Peak Position": 1,
+        "Weeks on Chart": 6,
+        "year": "2023-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Fe3O4: Break",
+        "Artist": "Nmixx",
+        "Peak Position": 171,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Killin' It",
+        "Artist": "P1Harmony",
+        "Peak Position": 39,
+        "Weeks on Chart": 2,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Born to Be",
+        "Artist": "Itzy",
+        "Peak Position": 62,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "With You-th",
+        "Artist": "Twice",
+        "Peak Position": 1,
+        "Weeks on Chart": 5,
+        "year": "2024-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Easy",
+        "Artist": "Le Sserafim",
+        "Peak Position": 8,
+        "Weeks on Chart": 5,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "2",
+        "Artist": "(G)I-dle",
+        "Peak Position": 132,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "House Of Tricky: Trial and Error",
+        "Artist": "Xikers",
+        "Peak Position": 73,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 5
+      },
+      {
+        "Song/Album Title": "Hope on the Street Vol. 1",
+        "Artist": "J-Hope",
+        "Peak Position": 5,
+        "Weeks on Chart": 2,
+        "year": "2024-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Minisode 3: Tomorrow",
+        "Artist": "TXT",
+        "Peak Position": 3,
+        "Weeks on Chart": 4,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "How?",
+        "Artist": "BoyNextDoor",
+        "Peak Position": 93,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 5
+      },
+      {
+        "Song/Album Title": "Super Real Me",
+        "Artist": "Illit",
+        "Peak Position": 93,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 5
+      },
+      {
+        "Song/Album Title": "17 Is Right Here",
+        "Artist": "Seventeen",
+        "Peak Position": 5,
+        "Weeks on Chart": 5,
+        "year": "2024-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Right Place, Wrong Person",
+        "Artist": "RM",
+        "Peak Position": 5,
+        "Weeks on Chart": 2,
+        "year": "2024-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Golden Hour: Part.1",
+        "Artist": "Ateez",
+        "Peak Position": 2,
+        "Weeks on Chart": 7,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Na",
+        "Artist": "Nayeon",
+        "Peak Position": 7,
+        "Weeks on Chart": 2,
+        "year": "2024-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Armageddon",
+        "Artist": "Aespa",
+        "Peak Position": 25,
+        "Weeks on Chart": 2,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Romance: Untold",
+        "Artist": "Enhypen",
+        "Peak Position": 2,
+        "Weeks on Chart": 10,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Ate",
+        "Artist": "Stray Kids",
+        "Peak Position": 1,
+        "Weeks on Chart": 14,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Muse",
+        "Artist": "Jimin",
+        "Peak Position": 2,
+        "Weeks on Chart": 17,
+        "year": "2024-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Walk",
+        "Artist": "NCT 127",
+        "Peak Position": 117,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Cosmic",
+        "Artist": "Red Velvet",
+        "Peak Position": 145,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Crazy",
+        "Artist": "Le Sserafim",
+        "Peak Position": 7,
+        "Weeks on Chart": 4,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "19.99",
+        "Artist": "BoyNextDoor",
+        "Peak Position": 40,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 5
+      },
+      {
+        "Song/Album Title": "Sad Song",
+        "Artist": "P1Harmony",
+        "Peak Position": 16,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Spill the Feels",
+        "Artist": "Seventeen",
+        "Peak Position": 5,
+        "Weeks on Chart": 4,
+        "year": "2024-01-01T00:00:00",
+        "generation": 3
+      },
+      {
+        "Song/Album Title": "Whiplash",
+        "Artist": "Aespa",
+        "Peak Position": 50,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Gold",
+        "Artist": "Itzy",
+        "Peak Position": 60,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "Drip",
+        "Artist": "Babymonster",
+        "Peak Position": 149,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 5
+      },
+      {
+        "Song/Album Title": "The Star Chapter: Sanctuary",
+        "Artist": "TXT",
+        "Peak Position": 2,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      },
+      {
+        "Song/Album Title": "I'll Like You",
+        "Artist": "Illit",
+        "Peak Position": 94,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 5
+      },
+      {
+        "Song/Album Title": "Tipi-tap",
+        "Artist": "Kep1er",
+        "Peak Position": 147,
+        "Weeks on Chart": 1,
+        "year": "2024-01-01T00:00:00",
+        "generation": 4
+      }
+    ]
+  }
+}

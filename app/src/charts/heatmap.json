@@ -1,0 +1,105 @@
+{
+  "config": {
+    "view": {
+      "continuousWidth": 300,
+      "continuousHeight": 300,
+      "strokeWidth": 0
+    },
+    "axis": {
+      "domain": false,
+      "grid": false,
+      "labelFontSize": 14,
+      "titleFontSize": 16
+    },
+    "legend": {
+      "labelFontSize": 14,
+      "titleFontSize": 16
+    },
+    "title": {
+      "anchor": "start",
+      "fontSize": 20
+    }
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/Pullze/kpop-info-vis/refs/heads/master/data/app_kpop.csv"
+  },
+  "mark": {
+    "type": "rect"
+  },
+  "encoding": {
+    "color": {
+      "field": "song_count",
+      "scale": {
+        "nice": true,
+        "scheme": "blues"
+      },
+      "title": "Songs Released",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {
+        "field": "year",
+        "title": "Year",
+        "type": "ordinal"
+      },
+      {
+        "field": "month",
+        "format": ".0f",
+        "title": "Month",
+        "type": "ordinal"
+      },
+      {
+        "field": "song_count",
+        "title": "Number of Songs",
+        "type": "quantitative"
+      }
+    ],
+    "x": {
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 11
+      },
+      "field": "year",
+      "title": "Year",
+      "type": "ordinal"
+    },
+    "y": {
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 11
+      },
+      "field": "month",
+      "title": "Month",
+      "type": "ordinal"
+    }
+  },
+  "height": 400,
+  "title": "Monthly K-pop Song Releases (Heatmap)",
+  "transform": [
+    {
+      "calculate": "year(datum['releasedate'])",
+      "as": "year"
+    },
+    {
+      "calculate": "month(datum['releasedate']) + 1",
+      "as": "month"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "song_count"
+        }
+      ],
+      "groupby": [
+        "year",
+        "month"
+      ]
+    },
+    {
+      "filter": "(datum.year >= 2007)"
+    }
+  ],
+  "width": 600,
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json"
+}
