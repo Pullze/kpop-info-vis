@@ -6,6 +6,8 @@ import Chart from "@/components/chart.tsx";
 import GenRank from "@/charts/gen_rank.json";
 import GirlsGen from "@/charts/girls_gen.json";
 import BTS from "@/charts/bts.json";
+import BillBoard200 from "@/charts/billboard_by_year.json";
+import HeatMap from "@/charts/heatmap.json";
 
 <Header/>
 
@@ -39,6 +41,8 @@ import BTS from "@/charts/bts.json";
   In this article, we will take a journey through time to unravel the evolution of K-pop and how K-pop has captivated
   millions of audiences worldwide in only three decades. K-pop has undergone several transformations, giving rise to
   distinct generations. We will present the five generations in chronological order.
+
+  <Chart spec={HeatMap} />
 
   ## The 1st Generation
   The first generation of K-pop began in 1992 with the debut of Seo Taiji and Boys. They introduced a new style of music
@@ -125,6 +129,15 @@ import BTS from "@/charts/bts.json";
 
   Looking ahead, an increasing number of K-pop groups are expected to thrive globally, attracting even larger fanbases.
   In 2024 alone, 23 K-pop idols made it onto the Billboard 200 chart.
+
+  <Chart spec={BillBoard200}/>
+
+  > In 2023, 35 albums reached the Billboard 200, with five climbing to the number one spot. NewJeans' Get Up held the
+  top position the longest, staying on the chart for 26 weeks. Other notable top albums include:
+  >  - The Name Chapter: Temptation - TXT
+  >  - 5-Star - Stray Kids
+  >  - Rock-Star - Stray Kids
+  >  - The World EP.Fin: Will - Ateez
 
   We think it’s safe to say that the K-pop revolution is far from over. The world is hungry for the best entertainment
   that Hallyu has to offer. Just like the British Invasion of the 1960s, the K-pop Invasion is going to continue to

@@ -2,7 +2,20 @@
   "config": {
     "view": {
       "continuousWidth": 300,
-      "continuousHeight": 300
+      "continuousHeight": 300,
+      "strokeWidth": 0
+    },
+    "axis": {
+      "labelFontSize": 14,
+      "titleFontSize": 16
+    },
+    "legend": {
+      "labelFontSize": 14,
+      "titleFontSize": 16
+    },
+    "title": {
+      "anchor": "start",
+      "fontSize": 20
     }
   },
   "vconcat": [

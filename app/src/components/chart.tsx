@@ -45,6 +45,6 @@ export default function Chart(props: ChartProps) {
   }, [parsedJSON, theme, width]);
 
   return (
-    <div className={cn("w-full not-prose mt-16", className)} {...rest} ref={ref}/>
+    <div className={cn("w-full not-prose mt-4", className)} {...rest} ref={ref}/>
   )
 }
