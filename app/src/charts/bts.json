@@ -86,14 +86,14 @@
           }
         ],
         "x": {
+          "scale": {
+            "reverse": true
+          },
           "field": "Peak Position",
           "title": "Peak Position",
           "type": "quantitative"
         },
         "y": {
-          "axis": {
-            "labelAngle": -45
-          },
           "field": "Weeks on Chart",
           "title": "Weeks on Chart",
           "type": "quantitative"
