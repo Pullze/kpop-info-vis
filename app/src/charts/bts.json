@@ -15,29 +15,16 @@
     },
     "title": {
       "anchor": "start",
-      "fontSize": 20
+      "fontSize": 16
     }
   },
-  "vconcat": [
+  "hconcat": [
     {
       "mark": {
         "type": "bar"
       },
       "encoding": {
-        "color": {
-          "field": "Weeks on Chart",
-          "scale": {
-            "scheme": "accent"
-          },
-          "title": "Weeks on Chart",
-          "type": "quantitative"
-        },
         "tooltip": [
-          {
-            "field": "Song/Album Title",
-            "title": "Song/Album Title",
-            "type": "nominal"
-          },
           {
             "field": "Peak Position",
             "title": "Peak Position",
@@ -59,19 +46,21 @@
             "labelAngle": -45
           },
           "field": "date",
+          "timeUnit": "yearquarter",
           "title": "Date",
           "type": "temporal"
         },
         "y": {
+          "aggregate": "sum",
           "field": "Weeks on Chart",
           "title": "Weeks on Chart",
           "type": "quantitative"
         }
       },
-      "height": 300,
-      "name": "view_51",
-      "title": "Timeline of Songs/Albums on Chart",
-      "width": 500
+      "height": 400,
+      "name": "view_3",
+      "title": "Weeks On Chart of BTS Hits on the Billboard 200 Over Time",
+      "width": 400
     },
     {
       "mark": {
@@ -79,20 +68,12 @@
         "size": 100
       },
       "encoding": {
-        "color": {
-          "field": "Peak Position",
-          "scale": {
-            "scheme": "accent"
-          },
-          "title": "Peak Position",
-          "type": "quantitative"
-        },
         "opacity": {
           "condition": {
-            "param": "param_18",
+            "param": "param_3",
             "value": 1.0
           },
-          "value": 0.2
+          "value": 0.3
         },
         "tooltip": [
           {
@@ -105,26 +86,20 @@
           }
         ],
         "x": {
+          "field": "Peak Position",
+          "title": "Peak Position",
+          "type": "quantitative"
+        },
+        "y": {
           "axis": {
             "labelAngle": -45
           },
-          "field": "Song/Album Title",
-          "sort": "-y",
-          "title": "Song/Album",
-          "type": "nominal"
-        },
-        "y": {
-          "field": "Peak Position",
-          "scale": {
-            "reverse": true,
-            "zero": false
-          },
-          "title": "Peak Position (Weeks)",
+          "field": "Weeks on Chart",
+          "title": "Weeks on Chart",
           "type": "quantitative"
         }
       },
-      "height": 150,
-      "name": "view_52",
+      "height": 400,
       "title": "Peak Position of Songs/Albums on Chart",
       "transform": [
         {
@@ -143,7 +118,7 @@
           ]
         }
       ],
-      "width": 500
+      "width": 400
     }
   ],
   "data": {
@@ -151,7 +126,7 @@
   },
   "params": [
     {
-      "name": "param_18",
+      "name": "param_3",
       "select": {
         "type": "interval",
         "encodings": [
@@ -159,15 +134,10 @@
         ]
       },
       "views": [
-        "view_51",
-        "view_52"
+        "view_3"
       ]
     }
   ],
-  "title": {
-    "text": "BTS\u2019s Billboard 200 Peaks over Time",
-    "fontSize": 20
-  },
   "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json",
   "datasets": {
     "data-ce252035ff60eb0aa3c35e616844cc40": [
